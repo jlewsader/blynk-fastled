@@ -21,6 +21,12 @@ int b = 255;
 // Attach virtual serial terminal to Virtual Pin V4
 WidgetTerminal terminal(V4);
 
+// This function will run every time Blynk connection is established
+BLYNK_CONNECTED() {
+  //get data stored in virtual pin V0 from server
+  Blynk.syncVirtual(V0, V1, V2, V3, V4);
+}
+
 void setup()
 {
   Serial.begin(9600);
