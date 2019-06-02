@@ -12,11 +12,11 @@
 CRGB leds[NUM_LEDS];
 #define PIN 0
 
-int brightness = 50
-int speed = 50
-int r = 0
-int g = 255
-int b = 255
+int brightness = 50;
+int speed = 50;
+int r = 0;
+int g = 255;
+int b = 255;
 
 // Attach virtual serial terminal to Virtual Pin V4
 WidgetTerminal terminal(V4);
