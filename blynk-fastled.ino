@@ -12,7 +12,7 @@
 CRGB leds[NUM_LEDS];
 #define PIN 0
 
-int brightness = 50;
+int brightness = 128;
 int speed = 50;
 int r = 0;
 int g = 255;
@@ -39,13 +39,13 @@ void setup()
   // your hardware gets connected to Blynk Server
   terminal.println(F("Blynk v" BLYNK_VERSION ": Device started"));
   FastLED.addLeds<WS2811, PIN, GRB>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
-  FastLED.setBrightness(brightness);
 
 }
 
 void loop()
 {
   Blynk.run();
+  FastLED.setBrightness(brightness);
 }
 
 // **************************
@@ -62,7 +62,6 @@ BLYNK_WRITE(V0) // zeRGBa Widget
 BLYNK_WRITE(V1) // Brightness slider widget
 {
   int brightness = param.asInt();
-  FastLED.setBrightness(brightness);
 }
 
 BLYNK_WRITE(V2) // Speed slider widget
