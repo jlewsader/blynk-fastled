@@ -17,6 +17,7 @@ int speed = 50;
 int r = 0;
 int g = 255;
 int b = 255;
+int effect;
 
 // Attach virtual serial terminal to Virtual Pin V4
 WidgetTerminal terminal(V4);
@@ -45,35 +46,10 @@ void setup()
 void loop()
 {
   Blynk.run();
+
   FastLED.setBrightness(brightness);
-}
 
-// **************************
-// ** Blynk Commands ********
-// **************************
-
-BLYNK_WRITE(V0) // zeRGBa Widget
-{
-  int r = param[0].asInt();
-  int g = param[1].asInt();
-  int b = param[2].asInt();
-}
-
-BLYNK_WRITE(V1) // Brightness slider widget
-{
-  int brightness = param.asInt();
-}
-
-BLYNK_WRITE(V2) // Speed slider widget
-{
-  int speed = param.asInt();
-}
-
-BLYNK_WRITE(V3) // Effects Menu widget
-{
-  Blynk.setProperty(V3, "labels", "RGB Loop", "RWB Fade", "Strobe", "Halloween Eyes", "Cylon Bounce", "NewKITT", "Twinkle", "Twinkle Random", "Sparkle", "Snow Sparkle", "RWB Runner", "Color Wipe", "Rainbow", "Theater Chase", "Theater Chase Rainbow", "Fire", "Bouncing Balls", "Color Bouncing Balls", "Meteor Rain");
-
-  switch(param.asInt()) {
+  switch(effect) {
 
     case 1  : {
                 // RGBLoop - no parameters
@@ -209,6 +185,34 @@ BLYNK_WRITE(V3) // Effects Menu widget
                 break;
               }
   }
+
+}
+
+// **************************
+// ** Blynk Commands ********
+// **************************
+
+BLYNK_WRITE(V0) // zeRGBa Widget
+{
+  int r = param[0].asInt();
+  int g = param[1].asInt();
+  int b = param[2].asInt();
+}
+
+BLYNK_WRITE(V1) // Brightness slider widget
+{
+  int brightness = param.asInt();
+}
+
+BLYNK_WRITE(V2) // Speed slider widget
+{
+  int speed = param.asInt();
+}
+
+BLYNK_WRITE(V3) // Effects Menu widget
+{
+  Blynk.setProperty(V3, "labels", "RGB Loop", "RWB Fade", "Strobe", "Halloween Eyes", "Cylon Bounce", "NewKITT", "Twinkle", "Twinkle Random", "Sparkle", "Snow Sparkle", "RWB Runner", "Color Wipe", "Rainbow", "Theater Chase", "Theater Chase Rainbow", "Fire", "Bouncing Balls", "Color Bouncing Balls", "Meteor Rain");
+  int effect = param.asInt();
 }
 
 // *************************
