@@ -39,6 +39,7 @@ void setup()
   // This will print Blynk Software version to the Terminal Widget when
   // your hardware gets connected to Blynk Server
   terminal.println(F("Blynk v" BLYNK_VERSION ": Device started"));
+
   FastLED.addLeds<WS2811, PIN, GRB>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
 
 }
@@ -49,7 +50,11 @@ void loop()
 
   FastLED.setBrightness(brightness);
 
-  switch(effect) {
+  runEffect();
+}
+
+void runEffect(){
+    switch(effect) {
 
     case 1  : {
                 // RGBLoop - no parameters
@@ -185,7 +190,6 @@ void loop()
                 break;
               }
   }
-
 }
 
 // **************************
@@ -212,6 +216,7 @@ BLYNK_WRITE(V2) // Speed slider widget
 BLYNK_WRITE(V3) // Effects Menu widget
 {
   Blynk.setProperty(V3, "labels", "RGB Loop", "RWB Fade", "Strobe", "Halloween Eyes", "Cylon Bounce", "NewKITT", "Twinkle", "Twinkle Random", "Sparkle", "Snow Sparkle", "RWB Runner", "Color Wipe", "Rainbow", "Theater Chase", "Theater Chase Rainbow", "Fire", "Bouncing Balls", "Color Bouncing Balls", "Meteor Rain");
+
   int effect = param.asInt();
 }
 
